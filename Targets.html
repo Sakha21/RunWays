@@ -1,117 +1,259 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0d10">
-  <title>Targets — RUNWAYS</title>
+
+  <title>Targets | RUNWAYS</title>
+
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
+
 <body data-page="targets">
+
+  <!-- Navigation -->
   <header class="topbar">
     <a class="brand" href="index.html" aria-label="RUNWAYS home">
-      <span class="brand-mark">R</span> RUNWAYS<span class="accent">.</span>
+      <span class="brand-mark">R</span>
+      <span>RUNWAYS<span class="accent">.</span></span>
     </a>
+
     <nav aria-label="Main navigation">
       <a href="index.html">Overview</a>
       <a href="index.html#activity">Activity</a>
       <a class="active" href="targets.html">Targets</a>
     </nav>
-    <a class="top-label" href="index.html">← BACK HOME</a>
+
+    <a class="top-label" href="index.html">BACK TO DASHBOARD</a>
   </header>
 
   <main class="shell">
+
+    <!-- Page introduction -->
     <section class="page-heading">
-      <p class="eyebrow">GOALS & ACHIEVEMENTS</p>
-      <h1>Collect moments.<br><span class="accent">Earn your miles.</span></h1>
-      <p class="muted">Record your virtual-run medals and keep an eye on your personal reward goal.</p>
+      <p class="eyebrow">YOUR GOALS & ACHIEVEMENTS</p>
+
+      <h1>
+        Every finish<br>
+        <span class="accent">means something.</span>
+      </h1>
+
+      <p class="muted">
+        Keep track of your race medals, celebrate your progress,
+        and work towards your next personal goal.
+      </p>
     </section>
 
+    <!-- Medal progress -->
     <section class="panel section medal-summary">
       <div class="between">
         <div>
-          <p class="eyebrow">MEDAL COLLECTION</p>
-          <h2><span id="receivedMedalCount">0</span><span class="muted"> / 10</span> received</h2>
+          <p class="eyebrow">YOUR COLLECTION</p>
+
+          <h2>
+            <span id="receivedMedalCount">0</span>
+            <span class="muted">/ 10 medals</span>
+          </h2>
+
+          <p class="muted">
+            Your next milestone is closer than you think.
+          </p>
         </div>
-        <span class="level-badge">10 MEDAL GOAL</span>
+
+        <span class="level-badge">MEDAL GOAL</span>
       </div>
-      <div class="progress" role="progressbar" aria-label="Medals received" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Medals received"
+        aria-valuemin="0"
+        aria-valuemax="10"
+        aria-valuenow="0"
+      >
         <div id="medalProgressBar"></div>
       </div>
+
       <div class="between small muted">
         <span id="medalProgressText">0% completed</span>
         <span id="medalRemaining">10 more to reach your goal</span>
       </div>
     </section>
 
+    <!-- Main content -->
     <section class="content-grid targets-grid">
+
+      <!-- Add or edit medal -->
       <section class="panel section">
-        <p class="eyebrow">COLLECTION LOG</p>
-        <h2 id="medalFormTitle">Add a medal<span class="accent">.</span></h2>
+        <p class="eyebrow">MEDAL DETAILS</p>
+
+        <h2 id="medalFormTitle">
+          Add a medal<span class="accent">.</span>
+        </h2>
+
         <form id="medalForm" novalidate>
           <input type="hidden" id="medalId">
-          <label for="medalName">Medal or event name
-            <input id="medalName" maxlength="80" placeholder="City Virtual Run" required>
+
+          <label for="medalName">
+            Event or medal name
+
+            <input
+              id="medalName"
+              type="text"
+              maxlength="80"
+              placeholder="e.g. October Virtual Run"
+              required
+            >
           </label>
-          <label for="medalDistance">Distance
+
+          <label for="medalDistance">
+            Race distance
+
             <select id="medalDistance" required>
-              <option value="">Choose distance</option>
-              <option>1K</option>
-              <option>3K</option>
-              <option>5K</option>
-              <option>10K</option>
-              <option>21K</option>
-              <option>42K</option>
-              <option>Other</option>
+              <option value="">Select a distance</option>
+              <option value="1K">1K</option>
+              <option value="3K">3K</option>
+              <option value="5K">5K</option>
+              <option value="10K">10K</option>
+              <option value="21K">21K</option>
+              <option value="42K">42K</option>
+              <option value="Other">Other</option>
             </select>
           </label>
-          <label for="medalDate">Event date
-            <input id="medalDate" type="date" required>
+
+          <label for="medalDate">
+            Event date
+
+            <input
+              id="medalDate"
+              type="date"
+              required
+            >
           </label>
+
           <label class="check-row" for="medalReceived">
-            <input id="medalReceived" type="checkbox">
-            I have physically received this medal
+            <input
+              id="medalReceived"
+              type="checkbox"
+            >
+            <span>I have received this medal</span>
           </label>
-          <button class="button primary full" id="saveMedal" type="submit">Save medal <span>+</span></button>
-          <button class="button secondary full hidden" id="cancelMedal" type="button">Cancel edit</button>
-          <p id="medalMessage" class="message" role="status" aria-live="polite"></p>
+
+          <button
+            class="button primary full"
+            id="saveMedal"
+            type="submit"
+          >
+            Save medal <span aria-hidden="true">+</span>
+          </button>
+
+          <button
+            class="button secondary full hidden"
+            id="cancelMedal"
+            type="button"
+          >
+            Cancel editing
+          </button>
+
+          <p
+            id="medalMessage"
+            class="message"
+            role="status"
+            aria-live="polite"
+          ></p>
         </form>
       </section>
 
+      <!-- Medal collection -->
       <section class="panel section">
         <div class="between section-heading">
           <div>
             <p class="eyebrow">YOUR ACHIEVEMENTS</p>
-            <h2>My medals<span class="accent">.</span></h2>
+
+            <h2>
+              My medals<span class="accent">.</span>
+            </h2>
           </div>
-          <span id="medalListCount" class="small muted">0 ITEMS</span>
+
+          <span
+            id="medalListCount"
+            class="small muted"
+          >
+            0 ITEMS
+          </span>
         </div>
-        <div id="medalList" class="history" aria-live="polite"></div>
+
+        <div id="medalList" class="history" aria-live="polite">
+          <div class="empty">
+            Your collection will appear here once you add a medal.
+          </div>
+        </div>
+
+        <p class="history-footer">
+          YOUR PROGRESS, ONE MEDAL AT A TIME.
+        </p>
       </section>
+
     </section>
 
+    <!-- Personal reward -->
     <section class="reward">
       <div>
-        <p class="eyebrow">YOUR PERSONAL REWARD GOAL</p>
-        <h2>One day, the next<br><span class="accent">finish line is yours.</span></h2>
-        <p class="muted">Your goal: PUMA Deviate NITRO 3. This tracker does not make purchases or verify race results automatically.</p>
-        <p id="rewardStatus" class="accent">0 / 10 medals received</p>
-        <button class="button primary" id="unlockReward" type="button">Check reward progress <span>↗</span></button>
+        <p class="eyebrow">YOUR NEXT PERSONAL GOAL</p>
+
+        <h2>
+          Earn your milestones.<br>
+          <span class="accent">Enjoy the journey.</span>
+        </h2>
+
+        <p class="muted">
+          Your reward goal is the PUMA Deviate NITRO 3.
+          Keep collecting medals and track your progress here.
+        </p>
+
+        <p
+          id="rewardStatus"
+          class="accent"
+          aria-live="polite"
+        >
+          0 / 10 medals received
+        </p>
+
+        <button
+          class="button primary"
+          id="unlockReward"
+          type="button"
+        >
+          Check reward progress
+          <span aria-hidden="true">↗</span>
+        </button>
       </div>
-      <div class="reward-art" aria-hidden="true">
-        <span>RUN FURTHER</span>
+
+      <div class="reward-art" aria-label="Ten medal goal">
+        <span>THE NEXT MILESTONE</span>
         <strong>10<span>×</span></strong>
-        <small>MEDAL GOAL</small>
+        <small>MEDALS RECEIVED</small>
       </div>
     </section>
 
+    <!-- Footer -->
     <footer>
       <span>RUNWAYS.</span>
-      <span>RUN YOUR WAY.</span>
+      <span>BUILT FOR YOUR NEXT PERSONAL BEST.</span>
     </footer>
+
   </main>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Notifications -->
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
 </body>
 </html>

@@ -1,0 +1,137 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d10">
+  <title>RUNWAYS — Running Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-page="home">
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="RUNWAYS home">
+      <span class="brand-mark">R</span> RUNWAYS<span class="accent">.</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a class="active" href="index.html">Overview</a>
+      <a href="#activity">Activity</a>
+      <a href="targets.html">Targets</a>
+    </nav>
+    <span class="top-label">PERSONAL RUNNING LOG</span>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR RUNNING JOURNEY</p>
+        <h1>Every run<br>moves you <span class="accent">forward.</span></h1>
+        <p class="muted">Track your miles, build consistency, and celebrate every milestone.</p>
+        <a class="button primary" href="#activity">Log a run <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-label="Total distance summary">
+        <span class="art-kicker">DISTANCE SO FAR</span>
+        <div class="hero-number"><span id="heroDistance">0.00</span><small>KM</small></div>
+        <span class="hero-tag">KEEP MOVING ↗</span>
+      </div>
+    </section>
+
+    <section class="panel level-panel">
+      <div class="between">
+        <div>
+          <p class="eyebrow">RUNNER LEVEL</p>
+          <h2 id="currentLevel">Beginner</h2>
+          <p id="levelDescription" class="muted">Every legend starts somewhere.</p>
+        </div>
+        <span class="level-badge" id="levelNumber">LEVEL 01</span>
+      </div>
+      <div class="between level-meta">
+        <span><b id="levelTotalDistance">0.00 km</b> completed</span>
+        <span>Next: <b id="nextLevelName">Amateur</b></span>
+      </div>
+      <div class="progress" role="progressbar" aria-label="Progress to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="levelProgressBar"></div>
+      </div>
+      <div class="between small muted">
+        <span id="levelProgressText">0% to next level</span>
+        <span id="levelRemaining">30.00 km to go</span>
+      </div>
+      <p id="levelMilestoneText" class="milestone">Your first milestone is 30 km.</p>
+    </section>
+
+    <section class="stats" aria-label="Running statistics">
+      <article class="panel stat">
+        <span>TOTAL DISTANCE</span>
+        <strong><span id="totalDistance">0.00</span><small> km</small></strong>
+      </article>
+      <article class="panel stat">
+        <span>TOTAL RUNS</span>
+        <strong id="totalRuns">0</strong>
+      </article>
+      <article class="panel stat">
+        <span>AVERAGE PACE</span>
+        <strong id="averagePace">—</strong>
+        <small>min/km</small>
+      </article>
+      <article class="panel stat">
+        <span>LONGEST RUN</span>
+        <strong><span id="bestDistance">0.00</span><small> km</small></strong>
+      </article>
+    </section>
+
+    <section class="content-grid" id="activity">
+      <section class="panel section">
+        <p class="eyebrow">NEW SESSION</p>
+        <h2 id="runTitle">Log a run<span class="accent">.</span></h2>
+        <form id="runForm" novalidate>
+          <input type="hidden" id="runId">
+          <label for="runDistance">Distance (km)
+            <input id="runDistance" type="number" min="0.01" max="1000" step="0.01" placeholder="5.00" required>
+          </label>
+          <label for="runDuration">Duration
+            <input id="runDuration" inputmode="decimal" placeholder="32:15 or 1:02:15" required>
+            <small>Use minutes (32.5), MM:SS, or HH:MM:SS.</small>
+          </label>
+          <label for="runDate">Run date
+            <input id="runDate" type="date" required>
+          </label>
+          <label for="runNotes">Notes <span class="optional">(optional)</span>
+            <input id="runNotes" maxlength="120" placeholder="Easy run, virtual race…">
+          </label>
+          <button class="button primary full" type="submit" id="saveRun">Save activity <span>+</span></button>
+          <button class="button secondary full hidden" type="button" id="cancelRun">Cancel edit</button>
+          <p id="runMessage" class="message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel section">
+        <div class="between section-heading">
+          <div>
+            <p class="eyebrow">YOUR PROGRESS</p>
+            <h2>Run history<span class="accent">.</span></h2>
+          </div>
+          <button class="text-button" id="clearRuns" type="button">Clear all</button>
+        </div>
+        <div id="runHistory" class="history" aria-live="polite"></div>
+        <p class="history-footer" id="historyCount">0 ACTIVITIES</p>
+      </section>
+    </section>
+
+    <section class="panel target-strip">
+      <div>
+        <p class="eyebrow">THE NEXT MILESTONE</p>
+        <h2>10 medals. One big goal.</h2>
+        <p class="muted">Keep track of your virtual-run medals and reward progress.</p>
+      </div>
+      <a class="button secondary" href="targets.html">View targets <span>↗</span></a>
+    </section>
+
+    <footer>
+      <span>RUNWAYS.</span>
+      <span>BUILT FOR YOUR NEXT PERSONAL BEST.</span>
+    </footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
